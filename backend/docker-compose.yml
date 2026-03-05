@@ -1,0 +1,15 @@
+services:
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: paas_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=paas
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgres
+
+volumes:
+  db:

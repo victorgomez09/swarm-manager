@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PaasApplication<paas>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.vira.paas.PaasApplication",
+            "projectName": "paas",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
