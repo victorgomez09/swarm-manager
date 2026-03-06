@@ -2,6 +2,7 @@ package com.vira.paas.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.vira.paas.dtos.ApplicationDto;
@@ -22,6 +23,7 @@ public class ApplicationController {
     private final ApplicationMapper mapper;
 
     @PostMapping
+    @PreAuthorize("@access.canAccessProject(#projectId)")
     public ResponseEntity<ApplicationDto> createApp(@RequestBody ApplicationDto appRequest) {
         ApplicationModel app = applicationService.create(mapper.toEntity(appRequest));
         buildService.processBuild(app);

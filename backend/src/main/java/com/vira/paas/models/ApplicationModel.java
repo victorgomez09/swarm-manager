@@ -57,6 +57,10 @@ public class ApplicationModel {
     @JoinColumn(name = "app_id")
     private List<EnvVariableModel> envVariables;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private ProjectModel project;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
