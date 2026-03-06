@@ -1,0 +1,62 @@
+<div class="p-6 lg:px-20 bg-base-200 min-h-screen">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-black tracking-tight">Mis Proyectos</h1>
+            <p class="text-base-content/60">Gestiona tus entornos de despliegue</p>
+        </div>
+        <button class="btn btn-primary" onclick="new_project_modal.showModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Nuevo Proyecto
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (project of projects(); track project.id) {
+        <div class="card bg-base-100 shadow-xl border border-base-300 hover:border-primary transition-all">
+            <div class="card-body">
+                <h2 class="card-title">{{ project.name }}</h2>
+                <p class="text-sm opacity-70">{{ project.description }}</p>
+                <div class="flex items-center mt-4 gap-2">
+                    <div class="badge badge-outline text-xs">{{ project.applications?.length || 0 }} Apps</div>
+                    <div class="badge badge-primary badge-outline text-xs">Owner</div>
+                </div>
+                <div class="card-actions justify-end mt-4">
+                    <button class="btn btn-sm btn-ghost" [routerLink]="['/projects', project.id]">Ver detalles</button>
+                </div>
+            </div>
+        </div>
+        } @empty {
+        <div
+            class="col-span-full flex flex-col items-center justify-center py-20 bg-base-100 rounded-box border-2 border-dashed border-base-300">
+            <p class="text-lg font-medium opacity-50">Aún no tienes proyectos creados</p>
+            <button class="btn btn-link no-underline" onclick="new_project_modal.showModal()">Crea el primero
+                ahora</button>
+        </div>
+        }
+    </div>
+</div>
+
+<dialog id="new_project_modal" class="modal">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">Nuevo Proyecto</h3>
+        <div class="form-control w-full mt-4">
+            <label class="label"><span class="label-text">Nombre del Proyecto</span></label>
+            <input type="text" [(ngModel)]="newProject.name" class="input input-bordered w-full"
+                placeholder="Ej: E-commerce Backend" />
+        </div>
+        <div class="form-control w-full mt-2">
+            <label class="label"><span class="label-text">Descripción</span></label>
+            <textarea [(ngModel)]="newProject.description" class="textarea textarea-bordered h-24"
+                placeholder="Breve descripción del propósito..."></textarea>
+        </div>
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn">Cancelar</button>
+                <button class="btn btn-primary ml-2" (click)="createProject()">Crear Proyecto</button>
+            </form>
+        </div>
+    </div>
+</dialog>

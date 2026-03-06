@@ -1,0 +1,31 @@
+<div class="flex items-center justify-center w-full h-full">
+    <div class="card bg-base-100 shadow bg-base-300 w-3/12">
+        <div class="card-body p-8">
+            <h2 class="card-title text-2xl font-bold">Crea tu cuenta</h2>
+            <p class="text-sm text-base-content/60">Únete al PaaS más rápido.</p>
+
+            <form (submit)="onRegister()" class="w-full">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Usuario</legend>
+                    <input type="text" [(ngModel)]="user.username" name="username"
+                        class="input input-bordered focus:input-primary w-full" required />
+                </fieldset>
+
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Usuario</legend>
+                    <input type="password" [(ngModel)]="user.password" name="password"
+                        class="input input-bordered focus:input-primary w-full" required />
+                </fieldset>
+
+                <button type="submit" class="btn btn-primary w-full mt-6" [disabled]="loading()">
+                    @if (loading()) { <span class="loading loading-spinner"></span> }
+                    Registrarse
+                </button>
+            </form>
+
+            <div class="divider text-xs opacity-50">O</div>
+            <p class="text-center text-sm">¿Ya tienes cuenta? <a routerLink="/login"
+                    class="link link-primary font-bold">Inicia sesión</a></p>
+        </div>
+    </div>
+</div>

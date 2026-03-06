@@ -19,7 +19,7 @@ public class ProjectService {
     private final ProjectRepository repository;
 
     public List<ProjectModel> findAllByUser(UserModel user) {
-        return repository.findAllByMember(user);
+        return repository.findAllByMembers(user);
     }
 
     public ProjectModel findById(UUID id) {

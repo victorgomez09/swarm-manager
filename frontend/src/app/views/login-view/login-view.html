@@ -1,0 +1,51 @@
+<div class="flex items-center justify-center w-full h-full">
+    <div class="card bg-base-100 shadow bg-base-300 w-3/12">
+        <div class="card-body p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-black tracking-tighter">Bienvenido a <span class="text-primary">VIRA</span>
+                </h2>
+                <p class="text-base-content/60 mt-2">Introduce tus credenciales para acceder</p>
+            </div>
+
+            @if (errorMessage()) {
+            <div class="alert alert-error mb-6 shadow-sm py-3 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-5 w-5" fill="none"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ errorMessage() }}</span>
+            </div>
+            }
+
+            <form (submit)="onLogin()" class="w-full">
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Usuario</legend>
+                    <input type="text" [(ngModel)]="credentials.username" name="username" placeholder="tu_usuario"
+                            class="input input-bordered w-full focus:input-primary w-full" required />
+                </fieldset>
+
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Contraseña</legend>
+                    <input type="password" [(ngModel)]="credentials.password" name="password" placeholder="••••••••"
+                        class="input input-bordered w-full focus:input-primary w-full" required />
+                </fieldset>
+
+                <div class="form-control mt-8">
+                    <button class="btn btn-primary w-full text-lg shadow-lg shadow-primary/20" [disabled]="isLoading()">
+                        @if (isLoading()) {
+                        <span class="loading loading-spinner"></span>
+                        }
+                        Entrar
+                    </button>
+                </div>
+            </form>
+
+            <div class="divider text-xs opacity-40 uppercase tracking-widest mt-8">o</div>
+            <p class="text-center text-sm">
+                ¿Aún no tienes cuenta?
+                <a routerLink="/register" class="link link-primary font-bold no-underline hover:underline">Regístrate</a>
+            </p>
+        </div>
+    </div>
+</div>

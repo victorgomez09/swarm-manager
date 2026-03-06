@@ -1,0 +1,6 @@
+<div class="flex flex-1 flex-col w-full h-full">
+  @if (authService.isAuthenticated()) {
+      <app-navbar></app-navbar>
+    }
+  <router-outlet />
+</div>

@@ -1,0 +1,24 @@
+<div class="navbar bg-base-100 border-b border-base-300 px-4 lg:px-20">
+    <div class="flex-1">
+        <a routerLink="/" class="btn btn-ghost text-xl font-black tracking-tighter">VIRA <span
+                class="text-primary text-xs">PaaS</span></a>
+    </div>
+    <div class="flex-none gap-2">
+        @if (authService.currentUser()) {
+        <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
+                    <span>{{ authService.currentUser().username?.charAt(0) }}</span>
+                </div>
+            </label>
+            <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                <li><a routerLink="/projects">Mis Proyectos</a></li>
+                <li><a (click)="authService.logout()">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+        } @else {
+        <a routerLink="/login" class="btn btn-ghost">Login</a>
+        <a routerLink="/register" class="btn btn-primary">Empezar</a>
+        }
+    </div>
+</div>

@@ -1,6 +1,7 @@
 package com.vira.paas.models;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,6 +34,9 @@ public class UserModel implements UserDetails {
     private String username;
     private String password;
     private String role; // ROLE_ADMIN, ROLE_DEVELOPER
+
+    @Builder.Default
+    private Date createdAt = new Date();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
